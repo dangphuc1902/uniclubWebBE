@@ -1,0 +1,53 @@
+# properti
+  #spring.datasource.url=jdbc:mysql://localhost:3307/uniclub_web
+  #spring.datasource.username=root
+  #spring.datasource.password=admin123
+  #spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+  #
+  #spring.jpa.hibernate.ddl-auto=none
+
+#yaml
+#server:
+#  port: 2020
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3307/uniclub_web
+    username: root
+    password: admin123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto:
+        none
+  webflux:
+    multipart:
+      max-headers-size: 512KB
+      max-parts: 3
+      max-disk-usage-per-part: 1024KB
+      max-in-memory-size: 5KB
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+key:
+  token:
+    jwt: L4f3AZ3yO8nPgQtR200WkCXAypfj6juu11mRpX/7UuM=
+
+upload:
+  file:
+    path: D:\WorkSpace\Project\uniclubWeb\uploads
+
+redis:
+  port: 6378
+  url: localhost
+# logger: Ghi lịa lại lch sử thao tác
+logging:
+  level:
+    root: info
+  file:
+    name: D:\WorkSpace\Project\uniclubWeb\log\devlog.log
+  logback:
+    rollingpolicy:
+      max-file-size: 100
