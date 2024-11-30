@@ -22,7 +22,8 @@ public class ProductController {
     private RedisTemplate redisTemplate;
     private Logger logger  = LoggerFactory.getLogger(ProductController.class);
     private Gson gson = new Gson();
-    @PostMapping("")
+    // insert product
+    @PostMapping("/insert")
     public ResponseEntity<?> insertProduct( InsertProductRequest insertProductRequest){
         String jsonRequest = gson.toJson(insertProductRequest);
         logger.info(jsonRequest);
@@ -33,14 +34,22 @@ public class ProductController {
         baseResponse.setData(productServiceImp.insertProduct(insertProductRequest));
         return new ResponseEntity<>(baseResponse, HttpStatus.OK);
     }
-    @GetMapping("")
-    public ResponseEntity<?> getALlProduct(){
-        redisTemplate.opsForValue().set("test", "Hello redis");
-        String test = (String) redisTemplate.opsForValue().get("test");
+    // get all product to view all product
+    @GetMapping("/all")
+    public ResponseEntity<?> getAllProduct(){
+//        redisTemplate.opsForValue().set("test", "Hello redis");
+//        String test = (String) redisTemplate.opsForValue().get("test");
 //        redisTemplate.hasKey()  Kiem tra co key hay ko.
-        System.out.println("Kiem tra redis: " + test);
+//        System.out.println("Kiem tra redis: " + test);
         BaseResponse baseResponse = new BaseResponse();
         baseResponse.setData(productServiceImp.getAllProduct());
+        return new ResponseEntity<>(baseResponse, HttpStatus.OK);
+    }
+    // Get information to view Detail Product
+    @GetMapping("/detail-add")
+    public ResponseEntity<?> getDetailAddToCart(){
+        BaseResponse baseResponse = new BaseResponse();
+        baseResponse.setData(productServiceImp.getDetailProduct());
         return new ResponseEntity<>(baseResponse, HttpStatus.OK);
     }
 }

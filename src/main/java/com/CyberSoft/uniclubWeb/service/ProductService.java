@@ -1,5 +1,6 @@
 package com.CyberSoft.uniclubWeb.service;
 
+import com.CyberSoft.uniclubWeb.dto.ProductDetailDto;
 import com.CyberSoft.uniclubWeb.dto.ProductDto;
 import com.CyberSoft.uniclubWeb.entity.ProductDetailEntity;
 import com.CyberSoft.uniclubWeb.entity.ProductEntity;
@@ -28,6 +29,8 @@ public class ProductService implements ProductServiceImp {
     private FileServiceImp fileServiceImp;
     @Autowired
     private ProductRepository productRepository;
+    @Autowired
+    private ProductDetailRepository ProductDetailRepository;
     @Autowired
     private ProductDetailRepository productDetailRepository;
     @Transactional
@@ -92,5 +95,20 @@ public class ProductService implements ProductServiceImp {
         });
 
         return productDtos;
+    }
+
+    @Override
+    public List<ProductDetailDto> getDetailProduct() {
+        System.out.println("Kiểm tra Product");
+        // lấy toàn bộ danh sách sản phẩm.
+        List<ProductDetailEntity> productDetailEntities = productDetailRepository.findAll();
+        List<ProductDetailDto> productDetailDtosDtos = new ArrayList<>();
+        // Bien Entity thanh DTO
+        productDetailEntities.forEach(item -> {
+            ProductDetailDto  productDetailDto = new ProductDetailDto();
+
+        });
+
+        return productDetailDtosDtos;
     }
 }
