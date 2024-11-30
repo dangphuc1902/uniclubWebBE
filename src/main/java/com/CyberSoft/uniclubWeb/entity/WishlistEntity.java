@@ -22,6 +22,6 @@ public class WishlistEntity {
     private int stockStatus;
     @ManyToOne
     @JoinColumn(name = "id_user")
-    private UsersEntity userId;
+    private UserEntity userId;
 
 }

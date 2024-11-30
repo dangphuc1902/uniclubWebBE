@@ -1,7 +1,9 @@
 package com.CyberSoft.uniclubWeb.payload.request;
 
-public class LoginRequest {
+import jakarta.validation.constraints.NotBlank;
 
+public class AuthorRequest {
+    @NotBlank(message = "user name không được rỗng")
     private String username;
     private String password;
     public String getUsername(){

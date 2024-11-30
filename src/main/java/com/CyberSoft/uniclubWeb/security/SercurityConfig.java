@@ -97,8 +97,8 @@ public class SercurityConfig {
         return http.csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(author -> {
-                    author.requestMatchers("/login/**", "/file/**","/test/**").permitAll();
-                    author.requestMatchers(HttpMethod.GET, "/product").permitAll();
+                    author.requestMatchers("/author/**", "/file/**","/test/**").permitAll();
+                    author.requestMatchers(HttpMethod.GET, "/product/**").permitAll();
                     author.anyRequest().authenticated();
                 })
                 .addFilterBefore(customJwtFilter, UsernamePasswordAuthenticationFilter.class)

@@ -1,6 +1,5 @@
 package com.CyberSoft.uniclubWeb.entity;
 
-import com.CyberSoft.uniclubWeb.entity.RolesEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,7 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "user")
-public class UsersEntity {
+public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -25,5 +24,5 @@ public class UsersEntity {
 
     @ManyToOne      // TODO note: Dựa vào "ManyToOne" hay "OneToMany" Xem chữ sau cùng để chọn một đối tượng private hay một List đối tượng.
     @JoinColumn(name = "id_roles")       // TODO note: Tên cột trong dâatabase dùng để liên kết dữ liệu
-    private RolesEntity roles;    // TODO note: Dựa vào "ManyToOne" hay "OneToMany" Xem chữ sau cùng để chọn một đối tượng private hay một List đối tượng.
+    private RoleEntity roles;    // TODO note: Dựa vào "ManyToOne" hay "OneToMany" Xem chữ sau cùng để chọn một đối tượng private hay một List đối tượng.
 }

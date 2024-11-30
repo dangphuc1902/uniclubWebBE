@@ -1,12 +1,14 @@
 package com.CyberSoft.uniclubWeb.repository;
 
-import com.CyberSoft.uniclubWeb.entity.UsersEntity;
-import jakarta.persistence.criteria.CriteriaBuilder;
+import com.CyberSoft.uniclubWeb.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
-public interface UserRepository extends JpaRepository<UsersEntity,Integer> {
-//    Giá trị trả về 1 đối tượng vì email là duy nhất ko trùng.
-UsersEntity findByEmail(String username);
+public interface UserRepository extends JpaRepository<UserEntity,Integer> {
+    //    Giá trị trả về 1 đối tượng vì email là duy nhất ko trùng.
+    Optional<UserEntity> findByEmail(String username);
+    boolean existsByEmail(String email);
 }

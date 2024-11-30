@@ -21,5 +21,5 @@ public class CardEntity {
     private int quantity;
     @ManyToOne
     @JoinColumn(name = "id_user")
-    private UsersEntity users;
+    private UserEntity users;
 }
