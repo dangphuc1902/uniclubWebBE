@@ -104,8 +104,8 @@ public class ProductService implements ProductServiceImp {
         List<ProductDetailEntity> productDetailEntities = productDetailRepository.findAll();
         List<ProductDetailDto> productDetailDtosDtos = new ArrayList<>();
         // Bien Entity thanh DTO
-        productDetailEntities.forEach(item -> {
-            ProductDetailDto  productDetailDto = new ProductDetailDto();
+        productDetailEntities.forEach(product -> {
+            ProductDetailDto  productDetailDto = new ProductDetailDto(product.getId(), product.getSoLuong());
 
         });
 

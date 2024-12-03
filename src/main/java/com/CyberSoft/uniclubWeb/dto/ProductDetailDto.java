@@ -13,4 +13,13 @@ public class ProductDetailDto {
     private int idMau;
     private int idKichThuoc;
     private int idSoluong;
+
+    public ProductDetailDto(int idSp, int idThe, int idLoaiSp, int idMau, int idKichThuoc, int idSoluong) {
+        this.idSp = idSp;
+        this.idThe = idThe;
+        this.idLoaiSp = idLoaiSp;
+        this.idMau = idMau;
+        this.idKichThuoc = idKichThuoc;
+        this.idSoluong = idSoluong;
+    }
 }
