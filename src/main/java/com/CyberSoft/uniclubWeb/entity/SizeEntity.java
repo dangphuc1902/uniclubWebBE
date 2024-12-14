@@ -12,14 +12,14 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "color")
-public class ColorEntity {
+@Entity(name = "size")
+public class SizeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "color_name")
-    private String colorName;
-    @OneToMany(mappedBy = "color", cascade = CascadeType.ALL)
+    @Column(name = "size_name")
+    private String sizeName;
+    @OneToMany(mappedBy = "size", cascade = CascadeType.ALL)
     private List<ProductDetailEntity> productdetail;
 }

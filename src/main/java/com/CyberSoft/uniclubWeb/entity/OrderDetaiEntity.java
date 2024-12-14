@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Setter
 @Getter
 @AllArgsConstructor
@@ -16,7 +18,7 @@ public class OrderDetaiEntity {
     private int id;
 
     @Column(name = "ID_product")
-    private int idProduct;
+    private int product;
 
     @Column(name = "price")
     private double priceProduct;
@@ -24,4 +26,7 @@ public class OrderDetaiEntity {
     private double quantity;
     @Column(name = "size_name")
     private String sizeProduct;
+    @ManyToOne
+    @JoinColumn(name = "orders", nullable = false)
+    private OrdersEntity ordersEntity;
 }

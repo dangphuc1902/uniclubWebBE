@@ -14,7 +14,7 @@ public class CardEntity {
     private int id;
     @ManyToOne
     @JoinColumn(name = "ID_product")
-    private ProductEntity idProduct;
+    private ProductEntity product;
     @Column(name = "price")
     private double price;
     @Column(name = "quantity")

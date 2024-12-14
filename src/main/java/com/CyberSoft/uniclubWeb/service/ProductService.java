@@ -105,10 +105,14 @@ public class ProductService implements ProductServiceImp {
         List<ProductDetailDto> productDetailDtosDtos = new ArrayList<>();
         // Bien Entity thanh DTO
         productDetailEntities.forEach(product -> {
-            ProductDetailDto  productDetailDto = new ProductDetailDto(product.getId(), product.getSoLuong());
-
+            ProductDetailDto  productDetailDto = new ProductDetailDto(
+                    product.getProduct(),
+                    product.getCategory(),
+                    product.getColor(),
+                    product.getSize(),
+                    product.getSoLuong());
+        productDetailDtosDtos.add(productDetailDto);
         });
-
         return productDetailDtosDtos;
     }
 }

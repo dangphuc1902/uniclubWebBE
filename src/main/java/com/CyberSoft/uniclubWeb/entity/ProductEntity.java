@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -31,68 +33,14 @@ public class ProductEntity {
     private String description;
     @Column(name = "sku")
     private String sku;
-
-    public int getIdProduct() {
-        return idProduct;
-    }
-
-    public void setIdProduct(int idProduct) {
-        this.idProduct = idProduct;
-    }
-
-    public String getProductName() {
-        return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public String getInformation() {
-        return information;
-    }
-
-    public void setInformation(String information) {
-        this.information = information;
-    }
-
-    public String getPrice() {
-        return price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
-    public String getImages() {
-        return images;
-    }
-
-    public void setImages(String images) {
-        this.images = images;
-    }
-
-    public String getStar() {
-        return star;
-    }
-
-    public void setStar(String star) {
-        this.star = star;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getSku() {
-        return sku;
-    }
-
-    public void setSku(String sku) {
-        this.sku = sku;
-    }
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private List<ReviewEntity> reviews;
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private List<ProductDetailEntity> productDetails;
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CardEntity> cardEntities;
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private List<OrderDetaiEntity> orderDetaiEntities;
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private List<WishlistEntity> wishlistEntities;
 }

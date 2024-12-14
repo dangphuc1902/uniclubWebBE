@@ -17,7 +17,7 @@ public class WishlistEntity {
     private int id;
     @ManyToOne
     @JoinColumn(name = "ID_product")
-    private ProductEntity idProduct;
+    private ProductEntity product;
     @Column(name = "stock_status")
     private int stockStatus;
     @ManyToOne

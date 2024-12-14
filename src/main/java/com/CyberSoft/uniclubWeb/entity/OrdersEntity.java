@@ -45,5 +45,5 @@ public class OrdersEntity {
     private String paymentMethod;
     @ManyToOne
     @JoinColumn(name = "user")
-    UserEntity userEntity;
+    private UserEntity userEntity;
 }
