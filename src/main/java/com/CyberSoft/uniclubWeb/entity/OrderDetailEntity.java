@@ -12,14 +12,12 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "orderDetail")
-public class OrderDetaiEntity {
+public class OrderDetailEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     @Column(name = "ID_product")
     private int product;
-
     @Column(name = "price")
     private double priceProduct;
     @Column(name = "quantity")

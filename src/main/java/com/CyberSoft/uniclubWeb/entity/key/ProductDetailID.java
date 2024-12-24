@@ -4,10 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 
@@ -15,11 +12,12 @@ import java.io.Serializable;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode
 @Embeddable
 public class ProductDetailID implements Serializable {
 
     @Column(name = "ID_product")
-    private int IdProduct;
+    private int idProduct;
 
     @Column(name = "ID_tag")
     private int idTag;
@@ -33,43 +31,4 @@ public class ProductDetailID implements Serializable {
     @Column(name = "ID_size")
     private int idSize;
 
-    public int getIdProduct() {
-        return IdProduct;
-    }
-
-    public void setIdProduct(int idProduct) {
-        IdProduct = idProduct;
-    }
-
-    public int getIdTag() {
-        return idTag;
-    }
-
-    public void setIdTag(int idTag) {
-        this.idTag = idTag;
-    }
-
-    public int getIdCategory() {
-        return idCategory;
-    }
-
-    public void setIdCategory(int idCategory) {
-        this.idCategory = idCategory;
-    }
-
-    public int getIdColor() {
-        return idColor;
-    }
-
-    public void setIdColor(int idColor) {
-        this.idColor = idColor;
-    }
-
-    public int getIdSize() {
-        return idSize;
-    }
-
-    public void setIdSize(int idSize) {
-        this.idSize = idSize;
-    }
 }

@@ -8,6 +8,8 @@ public class ProductDto implements Serializable {
     private String gia;
     private String image;
 
+
+
     public String getDesc() {
         return desc;
     }
@@ -49,5 +51,16 @@ public class ProductDto implements Serializable {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public ProductDto() {
+    }
+
+    public ProductDto(String tensp, String gia, String image, int idSanPham, String desc) {
+        this.tensp = tensp;
+        this.gia = gia;
+        this.image = image;
+        this.idSanPham = idSanPham;
+        this.desc = desc;
     }
 }

@@ -7,6 +7,7 @@ import com.CyberSoft.uniclubWeb.entity.ProductEntity;
 import com.CyberSoft.uniclubWeb.entity.key.ProductDetailID;
 import com.CyberSoft.uniclubWeb.exception.InsertException;
 import com.CyberSoft.uniclubWeb.payload.request.InsertProductRequest;
+import com.CyberSoft.uniclubWeb.payload.resoponse.BaseResponse;
 import com.CyberSoft.uniclubWeb.repository.ProductDetailRepository;
 import com.CyberSoft.uniclubWeb.repository.ProductRepository;
 import com.CyberSoft.uniclubWeb.service.imp.FileServiceImp;
@@ -96,23 +97,67 @@ public class ProductService implements ProductServiceImp {
 
         return productDtos;
     }
+// Get Detail one Product.
+    @Override
+    public List<ProductDetailDto> getDetailProduct(int idProduct) {
+        // lấy toàn bộ danh sách sản phẩm.
+        List<ProductDetailEntity> productDetailEntities = productDetailRepository.findById_IdProduct(idProduct);
+        List<ProductDetailDto> productDetailDtos = productDetailEntities.stream().map(
+                product -> new ProductDetailDto(
+                        product.getId().getIdProduct(),
+                        product.getCategory().getId(),
+                        product.getColor().getId(),
+                        product.getSize().getId(),
+                        product.getSoLuong()
+                )
+        ).toList();
+        return productDetailDtos;
+    }
+    // Delete product soft, set flag Delete.
+    @Override
+    public boolean isDeleteProduct(int IdPProduct) {
+        boolean isSuccess = false;
+        ProductEntity product = productRepository.findById(IdPProduct).orElseThrow(() -> new RuntimeException("Không tìm thấy sản phẩm với ID: " + IdPProduct));
+        if (product.isOpen()){
+            product.setOpen(false);
+            productRepository.save(product);
+            isSuccess = true;
+        }else {
+            throw new RuntimeException("The product is currently out of stock for sale.");
+        }
+        return isSuccess;
+    }
 
     @Override
-    public List<ProductDetailDto> getDetailProduct() {
-        System.out.println("Kiểm tra Product");
-        // lấy toàn bộ danh sách sản phẩm.
-        List<ProductDetailEntity> productDetailEntities = productDetailRepository.findAll();
-        List<ProductDetailDto> productDetailDtosDtos = new ArrayList<>();
-        // Bien Entity thanh DTO
-        productDetailEntities.forEach(product -> {
-            ProductDetailDto  productDetailDto = new ProductDetailDto(
-                    product.getProduct(),
-                    product.getCategory(),
-                    product.getColor(),
-                    product.getSize(),
-                    product.getSoLuong());
-        productDetailDtosDtos.add(productDetailDto);
+    public List<ProductDto> findProduct(String nameProduct) {
+        List<ProductEntity> productFounds = productRepository.findByProductName(nameProduct);
+        List<ProductDto> productsFoundDto = new ArrayList<>();
+        productFounds.forEach(item -> {
+            ProductDto  productDto = new ProductDto();
+            productDto.setTensp(item.getProductName());
+            productDto.setGia(item.getPrice());
+            productDto.setIdSanPham(item.getIdProduct());
+            productDto.setDesc(item.getDescription());
+            productDto.setImage( "http://localhost:8080/file/" + item.getImages());
+            productsFoundDto.add(productDto);
         });
-        return productDetailDtosDtos;
+        return productsFoundDto;
     }
+
+    @Override
+    public List<ProductDto> findProductSale() {
+        List<ProductEntity> productEntities = productRepository.findAllByOpen();
+        List<ProductDto>  productForSale = new ArrayList<>();
+        productEntities.forEach(item -> {
+            ProductDto  productDto = new ProductDto();
+            productDto.setTensp(item.getProductName());
+            productDto.setGia(item.getPrice());
+            productDto.setIdSanPham(item.getIdProduct());
+            productDto.setDesc(item.getDescription());
+            productDto.setImage( "http://localhost:8080/file/" + item.getImages());
+            productForSale.add(productDto);
+        });
+        return productForSale;
+    }
+
 }

@@ -26,6 +26,4 @@ public class ProductDetailDto {
         this.idQuantity = idQuantity;
     }
 
-    public ProductDetailDto(ProductEntity product, CategoryEntity category, ColorEntity color, SizeEntity size, int soLuong) {
-    }
 }
