@@ -11,7 +11,8 @@ public interface ProductServiceImp {
     boolean insertProduct(InsertProductRequest productRequest);
     List<ProductDto> getAllProduct();
     List<ProductDetailDto> getDetailProduct(int idProduct);
-    boolean isDeleteProduct(int IdPProduct);
+    boolean isShowProduct(int idProduct);
     List<ProductDto> findProduct(String nameProduct);
     List<ProductDto> findProductSale();
+    boolean isDeleteProduct(int idProduct);
 }

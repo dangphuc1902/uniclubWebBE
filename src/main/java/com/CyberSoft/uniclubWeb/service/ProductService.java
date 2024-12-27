@@ -2,27 +2,21 @@ package com.CyberSoft.uniclubWeb.service;
 
 import com.CyberSoft.uniclubWeb.dto.ProductDetailDto;
 import com.CyberSoft.uniclubWeb.dto.ProductDto;
-import com.CyberSoft.uniclubWeb.entity.ProductDetailEntity;
-import com.CyberSoft.uniclubWeb.entity.ProductEntity;
+import com.CyberSoft.uniclubWeb.entity.*;
 import com.CyberSoft.uniclubWeb.entity.key.ProductDetailID;
 import com.CyberSoft.uniclubWeb.exception.InsertException;
+import com.CyberSoft.uniclubWeb.exception.ProductNotFoundException;
 import com.CyberSoft.uniclubWeb.payload.request.InsertProductRequest;
 import com.CyberSoft.uniclubWeb.payload.resoponse.BaseResponse;
-import com.CyberSoft.uniclubWeb.repository.ProductDetailRepository;
-import com.CyberSoft.uniclubWeb.repository.ProductRepository;
+import com.CyberSoft.uniclubWeb.repository.*;
 import com.CyberSoft.uniclubWeb.service.imp.FileServiceImp;
 import com.CyberSoft.uniclubWeb.service.imp.ProductServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ListIterator;
 
 @Service
 public class ProductService implements ProductServiceImp {
@@ -31,9 +25,24 @@ public class ProductService implements ProductServiceImp {
     @Autowired
     private ProductRepository productRepository;
     @Autowired
-    private ProductDetailRepository ProductDetailRepository;
+    private ReviewRepository reviewRepository;
+    @Autowired
+    private WishlistRepository wishlistRepository;
     @Autowired
     private ProductDetailRepository productDetailRepository;
+    @Autowired
+    private OrderDetailRepository orderDetailRepository;
+    @Autowired
+    private CardReponsitory cardReponsitory;
+
+    @Autowired
+    private CategoryRepository categoryRepository;
+    @Autowired
+    private ColorRepository colorRepository;
+    @Autowired
+    private SizeRepository sizeRepository;
+    @Autowired
+    private TagRepository tagRepository;
     @Transactional
     @Override
     public boolean insertProduct(InsertProductRequest productRequest) {
@@ -115,7 +124,7 @@ public class ProductService implements ProductServiceImp {
     }
     // Delete product soft, set flag Delete.
     @Override
-    public boolean isDeleteProduct(int IdPProduct) {
+    public boolean isShowProduct(int IdPProduct) {
         boolean isSuccess = false;
         ProductEntity product = productRepository.findById(IdPProduct).orElseThrow(() -> new RuntimeException("Không tìm thấy sản phẩm với ID: " + IdPProduct));
         if (product.isOpen()){
@@ -127,6 +136,7 @@ public class ProductService implements ProductServiceImp {
         }
         return isSuccess;
     }
+    // Hard delete data (Xóa Vĩnh Viễn)
 
     @Override
     public List<ProductDto> findProduct(String nameProduct) {
@@ -158,6 +168,24 @@ public class ProductService implements ProductServiceImp {
             productForSale.add(productDto);
         });
         return productForSale;
+    }
+
+    @Override
+    public boolean isDeleteProduct(int idProduct) {
+        BaseResponse baseResponse = new BaseResponse();
+        boolean isDeleteSuccess = false;
+        if (!productRepository.existsById(idProduct)){
+            throw new ProductNotFoundException("Product with ID " + idProduct + " not found");
+        }
+        if (!categoryRepository.existsById(idProduct) || !colorRepository.existsById(idProduct) || !sizeRepository.existsById(idProduct) || !tagRepository.existsById(idProduct)){
+            throw  new
+        }
+        if (categoryEntity.)
+        WishlistEntity wishlist = wishlistRepository.findById(idProduct).orElseThrow(() -> new RuntimeException("WishlistEntity with ID " + idProduct + " not found"));
+        ReviewEntity reviewEntity = reviewRepository.findById(idProduct).orElseThrow(() -> new RuntimeException("ReviewEntity with ID " + idProduct + " not found"));
+        OrderDetailEntity orderDetail = orderDetailRepository.findById(idProduct).orElseThrow(() -> new RuntimeException("OrderDetailEntity with ID " + idProduct + " not found"));
+        CardEntity cardEntity = cardReponsitory.findById(idProduct).orElseThrow(() -> new RuntimeException ("CardEntity with ID " + idProduct + " not found"));
+        return false;
     }
 
 }

@@ -65,7 +65,7 @@ public class ProductController {
     public ResponseEntity<?> deleteProduct(@PathVariable int idProduct)
     {
         BaseResponse baseResponse = new BaseResponse();
-        boolean isDeleteSuccess = productServiceImp.isDeleteProduct(idProduct);
+        boolean isDeleteSuccess = productServiceImp.isShowProduct(idProduct);
         baseResponse.setMessage(isDeleteSuccess ? "Product deleted successfully!" : "Product not deleted successfully!");
         return new ResponseEntity<>(baseResponse,HttpStatus.OK);
     }
