@@ -44,11 +44,11 @@ public class FileController {
 //            System.out.println("Kiem tra khong co gia tri ");
 //        }
         Optional<ProductDto> dto1 =  dto.map(data -> {
-            data.setImage("Abc.jpg");
+            data.setImages("Abc.jpg");
             return data;
         });
          if (dto1.isPresent()) {
-             System.out.println("Co gia tri " + dto1.get().getImage());
+             System.out.println("Co gia tri " + dto1.get().getImages());
          }else {
              System.out.println("loi khong co gia tri");
          }

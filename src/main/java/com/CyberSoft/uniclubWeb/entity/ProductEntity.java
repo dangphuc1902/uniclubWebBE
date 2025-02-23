@@ -38,11 +38,23 @@ public class ProductEntity {
     @Column(name = "sku")
     private String sku;
 
-    @Column(name = "is_open")
-    private boolean isOpen;
-
     @Column(name = "images")
     private String images;
+
+    @Column(name = "created_at")
+    private String createdAt;
+
+    @Column(name = "updated_at")
+    private String updatedAt;
+
+    @Column(name = "updated_by")
+    private String updatedBy;
+
+    @Column(name = "status")
+    private String status;
+
+    @Column(name = "last_change_note")
+    private String lastChangeNote;
 
     // Quan hệ với bảng review
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)

@@ -73,22 +73,22 @@ public class SercurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//        Cách cũ.
-//        return http.csrf().disable()
-//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) // Huỷ sử dụng session, khong luu trang thai
-//                .and()
-//                .authorizeHttpRequests()
-//                .requestMatchers("/login/**", "/file/**").permitAll()
-//                .requestMatchers(HttpMethod.GET,"/product").permitAll()
-////                .requestMatchers(HttpMethod.DELETE,"/admin").hasAnyRole("ADMIN","USER")
-//                .anyRequest().authenticated()                   // con cac link con lai phai chung thuc
-//                .and()
-//                .addFilterBefore(customJwtFilter, UsernamePasswordAuthenticationFilter.class)
-//                .build();
-//       Cách Mới:
-//        http.csrf(c -> c.disable())
+//       le())
 //                .authorizeHttpRequests(a ->{
-//                        a.requestMatchers("/role","/role/**").permitAll();         // Cho phép chạy
+//                       Cách cũ.
+////        return http.csrf().disable()
+////                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) // Huỷ sử dụng session, khong luu trang thai
+////                .and()
+////                .authorizeHttpRequests()
+////                .requestMatchers("/login/**", "/file/**").permitAll()
+////                .requestMatchers(HttpMethod.GET,"/product").permitAll()
+//////                .requestMatchers(HttpMethod.DELETE,"/admin").hasAnyRole("ADMIN","USER")
+////                .anyRequest().authenticated()                   // con cac link con lai phai chung thuc
+////                .and()
+////                .addFilterBefore(customJwtFilter, UsernamePasswordAuthenticationFilter.class)
+////                .build();
+////       Cách Mới:
+////        http.csrf(c -> c.disab  a.requestMatchers("/role","/role/**").permitAll();         // Cho phép chạy
 //                        a.anyRequest().authenticated();                 // Yeu cau chung thuc.
 //                }
 //                );
@@ -97,7 +97,7 @@ public class SercurityConfig {
         return http.csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(author -> {
-                    author.requestMatchers("/author/**", "/file/**","/test/**").permitAll();
+                    author.requestMatchers("/author/**", "/file/**", "/test/**").permitAll();
                     author.requestMatchers(HttpMethod.GET, "/product/**").permitAll();
                     author.anyRequest().authenticated();
                 })

@@ -4,63 +4,121 @@ import java.io.Serializable;
 
 public class ProductDto implements Serializable {
 
-    private String tensp;
-    private String gia;
-    private String image;
+    private int idProduct;
+    private String productName;
+    private String price;
+    private String star;
+    private String description;
+    private String information;
+    private String sku;
+    private String images;
+    private String createdAt;
+    private String updatedAt;
+    private String updatedBy;
+    private String status;
+    private String lastChangeNote;
 
-
-
-    public String getDesc() {
-        return desc;
+    public int getIdProduct() {
+        return idProduct;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setIdProduct(int idProduct) {
+        this.idProduct = idProduct;
     }
 
-    private int idSanPham;
-    private String desc;
-
-    public int getIdSanPham() {
-        return idSanPham;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setIdSanPham(int idSanPham) {
-        this.idSanPham = idSanPham;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
-    public String getTensp() {
-        return tensp;
+    public String getPrice() {
+        return price;
     }
 
-    public void setTensp(String tensp) {
-        this.tensp = tensp;
+    public void setPrice(String price) {
+        this.price = price;
     }
 
-    public String getGia() {
-        return gia;
+    public String getStar() {
+        return star;
     }
 
-    public void setGia(String gia) {
-        this.gia = gia;
+    public void setStar(String star) {
+        this.star = star;
     }
 
-    public String getImage() {
-        return image;
+    public String getDescription() {
+        return description;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public ProductDto() {
+    public String getInformation() {
+        return information;
     }
 
-    public ProductDto(String tensp, String gia, String image, int idSanPham, String desc) {
-        this.tensp = tensp;
-        this.gia = gia;
-        this.image = image;
-        this.idSanPham = idSanPham;
-        this.desc = desc;
+    public void setInformation(String information) {
+        this.information = information;
+    }
+
+    public String getSku() {
+        return sku;
+    }
+
+    public void setSku(String sku) {
+        this.sku = sku;
+    }
+
+    public String getImages() {
+        return images;
+    }
+
+    public void setImages(String images) {
+        this.images = images;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public String getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(String updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public String getUpdatedBy() {
+        return updatedBy;
+    }
+
+    public void setUpdatedBy(String updatedBy) {
+        this.updatedBy = updatedBy;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getLastChangeNote() {
+        return lastChangeNote;
+    }
+
+    public void setLastChangeNote(String lastChangeNote) {
+        this.lastChangeNote = lastChangeNote;
     }
 }

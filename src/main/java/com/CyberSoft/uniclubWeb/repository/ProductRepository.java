@@ -14,6 +14,5 @@ import java.util.List;
 public interface ProductRepository extends JpaRepository<ProductEntity,Integer> {
     @Query("SELECT p FROM ProductEntity p WHERE LOWER(p.productName) LIKE LOWER(CONCAT('%', :naneProduct, '%'))")
     List<ProductEntity> findByProductName(@Param("nameProduct") String naneProduct);
-    @Query("SELECT p FROM ProductEntity p WHERE p.isOpen = false")
-    List<ProductEntity> findAllByOpen();
+    List<ProductEntity> findByStatus(String status);
 }

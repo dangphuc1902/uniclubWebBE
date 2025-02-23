@@ -14,5 +14,5 @@ public interface ProductServiceImp {
     boolean isShowProduct(int idProduct);
     List<ProductDto> findProduct(String nameProduct);
     List<ProductDto> findProductSale();
-    boolean isDeleteProduct(int idProduct);
+    ProductEntity updateProduct(int idProduct, ProductDto productDto);
 }

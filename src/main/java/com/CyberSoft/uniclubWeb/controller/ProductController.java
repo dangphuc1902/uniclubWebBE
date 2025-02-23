@@ -1,6 +1,6 @@
 package com.CyberSoft.uniclubWeb.controller;
-
 import com.CyberSoft.uniclubWeb.dto.ProductDetailDto;
+import com.CyberSoft.uniclubWeb.dto.ProductDto;
 import com.CyberSoft.uniclubWeb.entity.ProductEntity;
 import com.CyberSoft.uniclubWeb.payload.request.InsertProductRequest;
 import com.CyberSoft.uniclubWeb.payload.resoponse.BaseResponse;
@@ -16,10 +16,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @RestController
 @RequestMapping("/product")
-@CrossOrigin
+@CrossOrigin(origins = "http://127.0.0.1:5500")
 public class ProductController {
     @Autowired
     private ProductServiceImp productServiceImp;
@@ -31,7 +34,7 @@ public class ProductController {
     private Gson gson = new Gson();
     // insert product
     @PostMapping("/insert")
-    public ResponseEntity<?> insertProduct( InsertProductRequest insertProductRequest){
+    public ResponseEntity<?> insertProduct(InsertProductRequest insertProductRequest){
         String jsonRequest = gson.toJson(insertProductRequest);
         logger.info(jsonRequest);
         productServiceImp.insertProduct(insertProductRequest);
@@ -69,7 +72,7 @@ public class ProductController {
         baseResponse.setMessage(isDeleteSuccess ? "Product deleted successfully!" : "Product not deleted successfully!");
         return new ResponseEntity<>(baseResponse,HttpStatus.OK);
     }
-
+// find product by name product
     @GetMapping("/find/{nameProduct}")
     public ResponseEntity<?> findProduct(@PathVariable String nameProduct)
     {
@@ -78,7 +81,8 @@ public class ProductController {
         baseResponse.setData(productServiceImp.findProduct(nameProduct));
         return new ResponseEntity<>(baseResponse, HttpStatus.OK);
     }
-    @GetMapping("/find")
+    // find product sale 
+    @GetMapping("/product-sale")
     public ResponseEntity<?> findProductSale()
     {
         BaseResponse baseResponse = new BaseResponse();
@@ -86,4 +90,11 @@ public class ProductController {
         baseResponse.setData(productServiceImp.findProductSale());
         return new ResponseEntity<>(baseResponse, HttpStatus.OK);
     }
+    @PostMapping("")
+    public ResponseEntity<?> updateProduct(@PathVariable int idProduct,@RequestBody ProductDto entity) {
+        BaseResponse baseResponse = new BaseResponse();
+        productServiceImp.updateProduct(idProduct, entity);
+        return new ResponseEntity<>(baseResponse, HttpStatus.OK);
+    }
+    
 }

@@ -1,6 +1,5 @@
 package com.CyberSoft.uniclubWeb.exception;
 
-import com.CyberSoft.uniclubWeb.controller.ProductController;
 import com.CyberSoft.uniclubWeb.payload.resoponse.BaseResponse;
 import com.google.gson.Gson;
 import org.apache.tomcat.util.http.parser.HttpParser;
