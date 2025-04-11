@@ -1,4 +1,4 @@
-package com.CyberSoft.uniclubWeb.payload.resoponse;
+package com.CyberSoft.uniclubWeb.payload.response;
 
 public class RoleResponse {
     private String name;

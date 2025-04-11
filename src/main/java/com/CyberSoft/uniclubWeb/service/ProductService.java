@@ -13,7 +13,7 @@ import com.CyberSoft.uniclubWeb.service.imp.ProductServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +25,7 @@ public class ProductService implements ProductServiceImp {
     private ProductRepository productRepository;
     @Autowired
     private ProductDetailRepository productDetailRepository;
+// Tạo sản phẩm:
     @Transactional
     @Override
     public boolean insertProduct(InsertProductRequest productRequest) {
@@ -35,13 +36,13 @@ public class ProductService implements ProductServiceImp {
 //
             ProductEntity productEntity = new ProductEntity(); 
             productEntity.setProductName(productRequest.getProductName());
-            productEntity.setPrice(productRequest.getPrice());
+            // productEntity.pr(productRequest.getPrice());
             productEntity.setImages(productRequest.getFile().getOriginalFilename());
             productEntity.setSku(productRequest.getSku());
             productEntity.setDescription(productRequest.getDescription());
             productEntity.setInformation(productRequest.getInformation());
-            productEntity.setCreatedAt(productRequest.getCreateAt());
-            productEntity.setUpdatedAt(productRequest.getUpdateAt());
+            productEntity.setCreatedAt(LocalDateTime.now().toString());
+            productEntity.setUpdatedAt(LocalDateTime.now().toString());
             productRepository.save(productEntity);
 //            Thêm dữ liệu vào bảng product detail
             ProductDetailEntity productDetailEntity = new ProductDetailEntity();
@@ -53,7 +54,7 @@ public class ProductService implements ProductServiceImp {
             id.setIdColor(productRequest.getIdColor());
 
             productDetailEntity.setId(id);
-            productDetailEntity.setSoLuong(productRequest.getQuantity());
+            productDetailEntity.setQuantity(productRequest.getQuantity());
             productDetailRepository.save(productDetailEntity);
 
             isSuccess = true;
@@ -62,12 +63,13 @@ public class ProductService implements ProductServiceImp {
             throw new InsertException("Loi them du lieu " + e.getMessage());
         }
 
-        return false;
+        return isSuccess;
     }
-// Khong tra ra ProductEntity de tranh SQL injecttion.
-//    @Cacheable("allProduct")        // nhược điểm: tốn ram, server sập mất cacheable. memcache
-    //Bai tap: Chinh sua memcache thanh redis cached o service getAllproduct
-    // Có thể setTimeOut Cache bằng thời gian
+        // Khong tra ra ProductEntity de tranh SQL injecttion.
+        //    @Cacheable("allProduct")        // nhược điểm: tốn ram, server sập mất cacheable. memcache
+            //Bai tap: Chinh sua memcache thanh redis cached o service getAllproduct
+            // Có thể setTimeOut Cache bằng thời gian
+    // Lấy toàn bộ sản phẩm 
     @Override
     public List<ProductDto> getAllProduct() {
         // lấy toàn bộ danh sách sản phẩm.
@@ -90,19 +92,18 @@ public class ProductService implements ProductServiceImp {
 // Get Detail one Product.
     @Override
     public List<ProductDetailDto> getDetailProduct(int idProduct) {
-        // lấy toàn bộ danh sách sản phẩm.
         List<ProductDetailEntity> productDetailEntities = productDetailRepository.findById_IdProduct(idProduct);
-        List<ProductDetailDto> productDetailDtos = productDetailEntities.stream().map(
-                product -> new ProductDetailDto(
+        return productDetailEntities.stream()
+                .map(product -> new ProductDetailDto(
                         product.getId().getIdProduct(),
                         product.getCategory().getId(),
                         product.getColor().getId(),
                         product.getSize().getId(),
-                        product.getSoLuong()
-                )
-        ).toList();
-        return productDetailDtos;
+                        product.getQuantity()
+                ))
+                .toList();
     }
+// Xóa sản phẩm
     // Delete product soft, set flag Delete.
     @Override
     public boolean isShowProduct(int IdPProduct) {
@@ -127,6 +128,7 @@ public class ProductService implements ProductServiceImp {
         productDto.setImages("http://localhost:8080/file/" + item.getImages());
         return productDto;
     }
+    // Tìm kiếm sản phẩm
     @Override
     public List<ProductDto> findProduct(String nameProduct) {
         List<ProductEntity> productFounds = productRepository.findByProductName(nameProduct);
@@ -136,7 +138,7 @@ public class ProductService implements ProductServiceImp {
         });
         return productsFoundDto;
     }
-
+    // Tìm kiếm sản phẩm đang sale
     @Override
     public List<ProductDto> findProductSale() {
         String status = "active";
@@ -150,13 +152,15 @@ public class ProductService implements ProductServiceImp {
         });
         return productForSale;
     }
+    // Sửa sản phẩm
     @Override
     public ProductEntity updateProduct(int idProduct, ProductDto productDto) {
-        ProductEntity productEntity = productRepository.findById(idProduct).orElseThrow(() -> new RuntimeException("Không tìm thấy sản phẩm với ID: " + idProduct)); 
+        ProductEntity productEntity = productRepository.findById(idProduct).orElseThrow(() -> new ProductNotFoundException("Không tìm thấy sản phẩm với ID: " + idProduct)); 
         productEntity.setProductName(productDto.getProductName()); 
         productEntity.setPrice(productDto.getPrice());
         productEntity.setDescription(productDto.getDescription());
         productEntity.setImages(productDto.getImages());
+        productEntity.setUpdatedAt(LocalDateTime.now().toString());
         productRepository.save(productEntity);
         return productEntity;
     }

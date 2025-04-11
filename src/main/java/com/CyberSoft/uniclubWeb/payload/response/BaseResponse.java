@@ -1,4 +1,4 @@
-package com.CyberSoft.uniclubWeb.payload.resoponse;
+package com.CyberSoft.uniclubWeb.payload.response;
 
 public class BaseResponse {
     private int statusCode = 200;

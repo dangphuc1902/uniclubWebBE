@@ -2,8 +2,9 @@ package com.CyberSoft.uniclubWeb.controller;
 import com.CyberSoft.uniclubWeb.dto.ProductDetailDto;
 import com.CyberSoft.uniclubWeb.dto.ProductDto;
 import com.CyberSoft.uniclubWeb.entity.ProductEntity;
+import com.CyberSoft.uniclubWeb.exception.ProductNotFoundException;
 import com.CyberSoft.uniclubWeb.payload.request.InsertProductRequest;
-import com.CyberSoft.uniclubWeb.payload.resoponse.BaseResponse;
+import com.CyberSoft.uniclubWeb.payload.response.BaseResponse;
 import com.CyberSoft.uniclubWeb.repository.ProductRepository;
 import com.CyberSoft.uniclubWeb.service.imp.ProductServiceImp;
 import com.google.gson.Gson;
@@ -37,7 +38,6 @@ public class ProductController {
     public ResponseEntity<?> insertProduct(InsertProductRequest insertProductRequest){
         String jsonRequest = gson.toJson(insertProductRequest);
         logger.info(jsonRequest);
-        productServiceImp.insertProduct(insertProductRequest);
         BaseResponse baseResponse = new BaseResponse();
         baseResponse.setMessage("OK");
         logger.info(gson.toJson(baseResponse));
@@ -47,10 +47,6 @@ public class ProductController {
     // get all product to view all product
     @GetMapping("/all")
     public ResponseEntity<?> getAllProduct(){
-//        redisTemplate.opsForValue().set("test", "Hello redis");
-//        String test = (String) redisTemplate.opsForValue().get("test");
-//        redisTemplate.hasKey()  Kiem tra co key hay ko.
-//        System.out.println("Kiem tra redis: " + test);
         BaseResponse baseResponse = new BaseResponse();
         baseResponse.setData(productServiceImp.getAllProduct());
         return new ResponseEntity<>(baseResponse, HttpStatus.OK);
@@ -90,10 +86,16 @@ public class ProductController {
         baseResponse.setData(productServiceImp.findProductSale());
         return new ResponseEntity<>(baseResponse, HttpStatus.OK);
     }
-    @PostMapping("")
+    // update product
+    @PostMapping("/update")
     public ResponseEntity<?> updateProduct(@PathVariable int idProduct,@RequestBody ProductDto entity) {
         BaseResponse baseResponse = new BaseResponse();
-        productServiceImp.updateProduct(idProduct, entity);
+        boolean isSuccess = false;
+        ProductEntity productEntity = productServiceImp.updateProduct(idProduct, entity);
+        if (productEntity != null) {
+            isSuccess = true;
+        }
+        baseResponse.setMessage("Update Product : " + idProduct + isSuccess);
         return new ResponseEntity<>(baseResponse, HttpStatus.OK);
     }
     

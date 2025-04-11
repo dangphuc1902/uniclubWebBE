@@ -6,7 +6,7 @@ public class ProductDto implements Serializable {
 
     private int idProduct;
     private String productName;
-    private String price;
+    private double price;
     private String star;
     private String description;
     private String information;
@@ -34,11 +34,11 @@ public class ProductDto implements Serializable {
         this.productName = productName;
     }
 
-    public String getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 

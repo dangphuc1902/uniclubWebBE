@@ -5,7 +5,7 @@ import com.CyberSoft.uniclubWeb.entity.UserEntity;
 import com.CyberSoft.uniclubWeb.exception.UserAlreadyExistsException;
 import com.CyberSoft.uniclubWeb.payload.request.AuthorRequest;
 import com.CyberSoft.uniclubWeb.payload.request.UserRequest;
-import com.CyberSoft.uniclubWeb.payload.resoponse.RoleResponse;
+import com.CyberSoft.uniclubWeb.payload.response.RoleResponse;
 import com.CyberSoft.uniclubWeb.repository.RoleRepository;
 import com.CyberSoft.uniclubWeb.repository.UserRepository;
 import com.CyberSoft.uniclubWeb.service.imp.AuthorServiceImp;
@@ -49,7 +49,7 @@ public class AuthorService implements AuthorServiceImp {
 
                 // khuc nay phai truyen vao role
                 RoleResponse roleResponse = new RoleResponse();
-                roleResponse.setName(userEntity.getRoles().getName());
+                roleResponse.setName(userEntity.getRole().getName());
                 String roles = gson.toJson(roleResponse);
                 token = jwtUltils.createToken(roles);
                 Cookie saveUserName = new Cookie("userName", authorRequest.getUsername());
@@ -76,10 +76,10 @@ public class AuthorService implements AuthorServiceImp {
         }
         UserEntity userEntity = new UserEntity();
         userEntity.setEmail(user.getEmail());
-        userEntity.setFullname(user.getFullName());
+        userEntity.setFullName(user.getFullName());
         userEntity.setPassword(passwordEncoder.encode(user.getPassword()));
         RoleEntity rolesEntity= roleRepository.findByName("ROLE_USER").get();
-        userEntity.setRoles(rolesEntity);
+        userEntity.setRole(rolesEntity);
         return userRepository.save(userEntity);
     }
 }

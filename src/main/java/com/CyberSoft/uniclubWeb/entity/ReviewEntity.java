@@ -2,28 +2,36 @@ package com.CyberSoft.uniclubWeb.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-@Setter
 @Getter
-@AllArgsConstructor
+@Setter
 @NoArgsConstructor
-@Entity(name = "review")
+@AllArgsConstructor
+@Entity
+@Table(name = "reviews")
 public class ReviewEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     @Column(name = "avatar_customer")
-    private String avataCustomer;
+    private String avatarCustomer;
+
     @Column(name = "name_customer")
     private String nameCustomer;
+
     @Column(name = "email_customer")
     private String emailCustomer;
-    @Column(name = "review_content")
+
+    @Column(name = "review_content", columnDefinition = "TEXT")
     private String reviewContent;
+
     @ManyToOne
-    @JoinColumn(name = "product", nullable = false)
+    @JoinColumn(name = "id_product", nullable = false)
     private ProductEntity product;
+
+    // Getters and Setters
 }

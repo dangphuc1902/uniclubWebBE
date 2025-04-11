@@ -2,24 +2,23 @@ package com.CyberSoft.uniclubWeb.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-import java.util.List;
-
-@Setter
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "size")
+@Entity
+@Table(name = "sizes")
 public class SizeEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "size_name")
+    @Column(name = "size_name", nullable = false)
     private String sizeName;
-    @OneToMany(mappedBy = "size", cascade = CascadeType.ALL)
-    private List<ProductDetailEntity> productdetail;
+
+    // Getters and Setters
 }

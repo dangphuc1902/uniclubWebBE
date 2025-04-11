@@ -2,48 +2,48 @@ package com.CyberSoft.uniclubWeb.entity;
 
 import com.CyberSoft.uniclubWeb.entity.key.ProductDetailID;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.*;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "productdetail")
+@NoArgsConstructor
+@Entity
+@Table(name = "product_details")
 public class ProductDetailEntity {
 
     @EmbeddedId
     private ProductDetailID id;
-    // Thuộc tính insertable = false, updatable = false:
-    //Được thêm vào @JoinColumn để ngăn Hibernate xử lý các cột ID_product, ID_category, ID_color, ID_size, và ID_tag như một phần của @ManyToOne.
+
+    @Column(name = "quantity")
+    private int quantity;
+
     @ManyToOne
-    @JoinColumn(name = "ID_product", referencedColumnName = "ID_product", insertable = false, updatable = false, nullable = false)
+    @MapsId("idProduct")
+    @JoinColumn(name = "id_product")
     private ProductEntity product;
 
     @ManyToOne
-    @JoinColumn(name = "ID_category", referencedColumnName = "id", insertable = false, updatable = false, nullable = false)
+    @MapsId("idTag")
+    @JoinColumn(name = "id_tag")
+    private TagEntity tag;
+
+    @ManyToOne
+    @MapsId("idCategory")
+    @JoinColumn(name = "id_category")
     private CategoryEntity category;
 
     @ManyToOne
-    @JoinColumn(name = "ID_color", referencedColumnName = "id", insertable = false, updatable = false, nullable = false)
+    @MapsId("idColor")
+    @JoinColumn(name = "id_color")
     private ColorEntity color;
 
     @ManyToOne
-    @JoinColumn(name = "ID_size", referencedColumnName = "id", insertable = false, updatable = false, nullable = false)
+    @MapsId("idSize")
+    @JoinColumn(name = "id_size")
     private SizeEntity size;
 
-    @ManyToOne
-    @JoinColumn(name = "ID_tag", referencedColumnName = "id", insertable = false, updatable = false, nullable = false)
-    private TagEntity tag;
-
-    @Column(name = "Soluong", nullable = false)
-    private int soLuong;
-
     // Getters and Setters
-    public ProductDetailID getId() {
-        return id;
-    }
-
-    public void setId(ProductDetailID id) {
-        this.id = id;
-    }
 }

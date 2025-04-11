@@ -1,6 +1,6 @@
 package com.CyberSoft.uniclubWeb.filter;
 
-import com.CyberSoft.uniclubWeb.payload.resoponse.RoleResponse;
+import com.CyberSoft.uniclubWeb.payload.response.RoleResponse;
 import com.CyberSoft.uniclubWeb.util.JwtUltils;
 import com.google.gson.Gson;
 import jakarta.servlet.FilterChain;

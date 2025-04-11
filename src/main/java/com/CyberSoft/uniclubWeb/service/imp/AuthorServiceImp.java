@@ -10,5 +10,5 @@ public interface AuthorServiceImp {
 
     String checkLogin(AuthorRequest authorRequest, HttpServletResponse response);
     UserEntity registerUser(UserRequest user);
-
+    
 }

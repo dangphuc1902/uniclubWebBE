@@ -2,26 +2,31 @@ package com.CyberSoft.uniclubWeb.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-@NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
-@Entity(name = "wishlist")
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "wishlists")
 public class WishlistEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @ManyToOne
-    @JoinColumn(name = "ID_product")
-    private ProductEntity product;
-    @Column(name = "stock_status")
-    private int stockStatus;
-    @ManyToOne
-    @JoinColumn(name = "id_user")
-    private UserEntity userId;
 
+    @ManyToOne
+    @JoinColumn(name = "id_product", nullable = false)
+    private ProductEntity product;
+
+    @ManyToOne
+    @JoinColumn(name = "id_user", nullable = false)
+    private UserEntity user;
+
+    @Column(name = "stock_status", nullable = false)
+    private int stockStatus;
+
+    // Getters and Setters
 }

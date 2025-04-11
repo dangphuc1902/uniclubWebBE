@@ -4,13 +4,14 @@ import com.CyberSoft.uniclubWeb.entity.UserEntity;
 import com.CyberSoft.uniclubWeb.exception.UserAlreadyExistsException;
 import com.CyberSoft.uniclubWeb.payload.request.AuthorRequest;
 import com.CyberSoft.uniclubWeb.payload.request.UserRequest;
-import com.CyberSoft.uniclubWeb.payload.resoponse.BaseResponse;
+import com.CyberSoft.uniclubWeb.payload.response.BaseResponse;
 import com.CyberSoft.uniclubWeb.service.imp.AuthorServiceImp;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 
 @RestController
 @RequestMapping("/author")
@@ -42,7 +43,7 @@ public class AuthorController {
     }
     @PostMapping("/login")
     public ResponseEntity<?>login(@RequestBody AuthorRequest authorRequest, HttpServletResponse response){
-//        TODO: Private key: Tạo ra key để mã hoá và sau đó lưu vo application.properties.
+//        Private key: Tạo ra key để mã hoá và sau đó lưu vo application.properties.
 //        SecretKey secretKey = Jwts.SIG.HS256.key().build();
 //        String key = Encoders.BASE64.encode(secretKey.getEncoded());
 //        System.out.println("Check key :"  + key);
