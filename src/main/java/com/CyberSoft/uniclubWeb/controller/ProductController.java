@@ -2,7 +2,7 @@ package com.CyberSoft.uniclubWeb.controller;
 import com.CyberSoft.uniclubWeb.dto.ProductDetailDto;
 import com.CyberSoft.uniclubWeb.dto.ProductDto;
 import com.CyberSoft.uniclubWeb.entity.ProductEntity;
-import com.CyberSoft.uniclubWeb.exception.ProductNotFoundException;
+//import com.CyberSoft.uniclubWeb.exception.ProductNotFoundException;
 import com.CyberSoft.uniclubWeb.payload.request.InsertProductRequest;
 import com.CyberSoft.uniclubWeb.payload.response.BaseResponse;
 import com.CyberSoft.uniclubWeb.repository.ProductRepository;
@@ -11,7 +11,7 @@ import com.google.gson.Gson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
+//import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,8 +29,8 @@ public class ProductController {
     private ProductServiceImp productServiceImp;
     @Autowired
     private ProductRepository productRepository;
-    @Autowired
-    private RedisTemplate redisTemplate;
+//    @Autowired
+//    private RedisTemplate redisTemplate;
     private Logger logger  = LoggerFactory.getLogger(ProductController.class);
     private Gson gson = new Gson();
     // insert product

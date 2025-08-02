@@ -37,7 +37,7 @@ public class AuthorService implements AuthorServiceImp {
     @Override
     public String checkLogin(AuthorRequest authorRequest, HttpServletResponse response) {
         String token = "";
-        UserEntity userEntity = userRepository.findByEmail(authorRequest.getUsername()).orElse(null);
+        UserEntity userEntity = userRepository.findByEmail(authorRequest.getEmail()).orElse(null);
         if (userEntity != null){
             if(passwordEncoder.matches(authorRequest.getPassword(), userEntity.getPassword()) ){
 
@@ -52,14 +52,15 @@ public class AuthorService implements AuthorServiceImp {
                 roleResponse.setName(userEntity.getRole().getName());
                 String roles = gson.toJson(roleResponse);
                 token = jwtUltils.createToken(roles);
-                Cookie saveUserName = new Cookie("userName", authorRequest.getUsername());
-                saveUserName.setHttpOnly(false);
-                saveUserName.setSecure(false);
-                saveUserName.setPath("/");
-                saveUserName.setMaxAge(7 * 24 * 60 * 60);
-                response.addCookie(saveUserName);
+                Cookie saveEmail = new Cookie("email", authorRequest.getEmail());
+                saveEmail.setHttpOnly(false);
+                saveEmail.setSecure(false);
+                saveEmail.setPath("/");
+                saveEmail.setMaxAge(7 * 24 * 60 * 60);
+                response.addCookie(saveEmail);
             }
         }
+        System.out.println("checkLogin Token: " + token);
         return token;
     }
 

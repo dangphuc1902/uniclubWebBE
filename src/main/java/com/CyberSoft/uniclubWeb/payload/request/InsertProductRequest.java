@@ -21,7 +21,6 @@ public class InsertProductRequest {
     private String updateAt;
     private String updateBy;
     private String status;
-    private String lastChangeNote;
     private int idTag;
     private int idCategory;
     private int idColor;
@@ -92,12 +91,6 @@ public class InsertProductRequest {
     }
     public void setStatus(String status) {
         this.status = status;
-    }
-    public String getLastChangeNote() {
-        return lastChangeNote;
-    }
-    public void setLastChangeNote(String lastChangeNote) {
-        this.lastChangeNote = lastChangeNote;
     }
     public int getIdTag() {
         return idTag;

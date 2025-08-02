@@ -26,21 +26,6 @@ public class UserEntity {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "created_at", nullable = false, updatable = false)
-    private String createdAt;
-
-    @Column(name = "updated_at")
-    private String updatedAt;
-
-    @Column(name = "updated_by")
-    private String updatedBy;
-
-    @Column(name = "status", columnDefinition = "ENUM('active', 'draft', 'deleted') DEFAULT 'active'")
-    private String status;
-
-    @Column(name = "last_change_note")
-    private String lastChangeNote;
-
     @ManyToOne
     @JoinColumn(name = "id_roles")
     private RoleEntity role;
@@ -76,46 +61,6 @@ public class UserEntity {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public String getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(String updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public String getUpdatedBy() {
-        return updatedBy;
-    }
-
-    public void setUpdatedBy(String updatedBy) {
-        this.updatedBy = updatedBy;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getLastChangeNote() {
-        return lastChangeNote;
-    }
-
-    public void setLastChangeNote(String lastChangeNote) {
-        this.lastChangeNote = lastChangeNote;
     }
 
     public RoleEntity getRole() {

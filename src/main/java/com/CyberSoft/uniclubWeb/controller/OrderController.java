@@ -1,14 +1,14 @@
 package com.CyberSoft.uniclubWeb.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import com.CyberSoft.uniclubWeb.service.imp.OrderServiceImp;
+//import com.CyberSoft.uniclubWeb.service.imp.OrderServiceImp;
 
 @RestController
 @RequestMapping("/order")
 public class OrderController {
-    @Autowired 
-    private OrderServiceImp orderServiceImp;
+//    @Autowired 
+//    private OrderServiceImp orderServiceImp;
 
     // @GetMapping("/order-detail/{idProduct}")   
     // public ResponseEntity<?> getOrderDetail(@PathVariable int idProduct){

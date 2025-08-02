@@ -25,7 +25,7 @@ public class ProductDto implements Serializable {
     public void setIdProduct(int idProduct) {
         this.idProduct = idProduct;
     }
-
+ 
     public String getProductName() {
         return productName;
     }

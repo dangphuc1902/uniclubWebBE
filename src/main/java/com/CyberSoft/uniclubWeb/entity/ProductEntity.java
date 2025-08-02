@@ -3,7 +3,13 @@ package com.CyberSoft.uniclubWeb.entity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
 import java.util.List;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import lombok.*;
 
 @Getter
@@ -34,26 +40,25 @@ public class ProductEntity {
     @Column(name = "information", columnDefinition = "TEXT")
     private String information;
 
-    @Column(name = "images", columnDefinition = "TEXT")
+    @Column(name = "images", columnDefinition = "JSON")
     private String images;
 
     @Column(name = "sku")
     private String sku;
 
-    @Column(name = "created_at", nullable = false, updatable = false)
-    private String createdAt;
+    @CreationTimestamp
+    @Column(name = "created_at", updatable = false)
+    private LocalDateTime createdAt;
 
+    @UpdateTimestamp
     @Column(name = "updated_at")
-    private String updatedAt;
+    private LocalDateTime updatedAt;
 
     @Column(name = "updated_by")
     private String updatedBy;
 
     @Column(name = "status", columnDefinition = "ENUM('active', 'draft', 'deleted') DEFAULT 'active'")
     private String status;
-
-    @Column(name = "last_change_note")
-    private String lastChangeNote;
 
     // Quan hệ với bảng review
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -139,23 +144,23 @@ public class ProductEntity {
         this.sku = sku;
     }
 
-    public String getCreatedAt() {
-        return createdAt;
-    }
+    public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
 
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
-    }
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
+	}
 
-    public String getUpdatedAt() {
-        return updatedAt;
-    }
+	public LocalDateTime getUpdatedAt() {
+		return updatedAt;
+	}
 
-    public void setUpdatedAt(String updatedAt) {
-        this.updatedAt = updatedAt;
-    }
+	public void setUpdatedAt(LocalDateTime updatedAt) {
+		this.updatedAt = updatedAt;
+	}
 
-    public String getUpdatedBy() {
+	public String getUpdatedBy() {
         return updatedBy;
     }
 
@@ -169,14 +174,6 @@ public class ProductEntity {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public String getLastChangeNote() {
-        return lastChangeNote;
-    }
-
-    public void setLastChangeNote(String lastChangeNote) {
-        this.lastChangeNote = lastChangeNote;
     }
 
     public List<ReviewEntity> getReviews() {

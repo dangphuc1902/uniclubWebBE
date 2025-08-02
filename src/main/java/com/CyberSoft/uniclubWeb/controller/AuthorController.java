@@ -6,7 +6,13 @@ import com.CyberSoft.uniclubWeb.payload.request.AuthorRequest;
 import com.CyberSoft.uniclubWeb.payload.request.UserRequest;
 import com.CyberSoft.uniclubWeb.payload.response.BaseResponse;
 import com.CyberSoft.uniclubWeb.service.imp.AuthorServiceImp;
+
+//import io.jsonwebtoken.Jwts;
+//import io.jsonwebtoken.io.Encoders;
 import jakarta.servlet.http.HttpServletResponse;
+
+//import javax.crypto.SecretKey;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

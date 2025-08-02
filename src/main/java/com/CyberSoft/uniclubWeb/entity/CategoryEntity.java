@@ -10,7 +10,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "categories")
+@Table(name = "category")
 public class CategoryEntity {
 
     @Id
@@ -19,6 +19,23 @@ public class CategoryEntity {
 
     @Column(name = "category_name", nullable = false)
     private String categoryName;
+
+    public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getCategoryName() {
+		return categoryName;
+	}
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+
 
     // Getters and Setters
 }

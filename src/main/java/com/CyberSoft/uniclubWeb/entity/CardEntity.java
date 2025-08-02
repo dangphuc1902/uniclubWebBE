@@ -7,7 +7,7 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "cards")
+@Entity(name = "cart")
 public class CardEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,7 +17,37 @@ public class CardEntity {
     private ProductEntity product;
     @Column(name = "price")
     private double price;
-    @Column(name = "quantity")
+    public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public ProductEntity getProduct() {
+		return product;
+	}
+	public void setProduct(ProductEntity product) {
+		this.product = product;
+	}
+	public double getPrice() {
+		return price;
+	}
+	public void setPrice(double price) {
+		this.price = price;
+	}
+	public int getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+	public UserEntity getUsers() {
+		return users;
+	}
+	public void setUsers(UserEntity users) {
+		this.users = users;
+	}
+	@Column(name = "quantity")
     private int quantity;
     @ManyToOne
     @JoinColumn(name = "id_user")

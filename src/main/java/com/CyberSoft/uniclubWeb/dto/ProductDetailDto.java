@@ -1,11 +1,5 @@
 package com.CyberSoft.uniclubWeb.dto;
-import com.CyberSoft.uniclubWeb.entity.CategoryEntity;
-import com.CyberSoft.uniclubWeb.entity.ColorEntity;
-import com.CyberSoft.uniclubWeb.entity.ProductEntity;
-import com.CyberSoft.uniclubWeb.entity.SizeEntity;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 @Data
 public class ProductDetailDto {

@@ -24,8 +24,9 @@ public class ProductDetailEntity {
     @MapsId("idProduct")
     @JoinColumn(name = "id_product")
     private ProductEntity product;
+    
 
-    @ManyToOne
+	@ManyToOne
     @MapsId("idTag")
     @JoinColumn(name = "id_tag")
     private TagEntity tag;
@@ -44,6 +45,62 @@ public class ProductDetailEntity {
     @MapsId("idSize")
     @JoinColumn(name = "id_size")
     private SizeEntity size;
+
+    public ProductDetailID getId() {
+		return id;
+	}
+
+	public void setId(ProductDetailID id) {
+		this.id = id;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public ProductEntity getProduct() {
+		return product;
+	}
+
+	public void setProduct(ProductEntity product) {
+		this.product = product;
+	}
+
+	public TagEntity getTag() {
+		return tag;
+	}
+
+	public void setTag(TagEntity tag) {
+		this.tag = tag;
+	}
+
+	public CategoryEntity getCategory() {
+		return category;
+	}
+
+	public void setCategory(CategoryEntity category) {
+		this.category = category;
+	}
+
+	public ColorEntity getColor() {
+		return color;
+	}
+
+	public void setColor(ColorEntity color) {
+		this.color = color;
+	}
+
+	public SizeEntity getSize() {
+		return size;
+	}
+
+	public void setSize(SizeEntity size) {
+		this.size = size;
+	}
 
     // Getters and Setters
 }

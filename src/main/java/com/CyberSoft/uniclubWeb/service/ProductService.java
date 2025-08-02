@@ -41,8 +41,6 @@ public class ProductService implements ProductServiceImp {
             productEntity.setSku(productRequest.getSku());
             productEntity.setDescription(productRequest.getDescription());
             productEntity.setInformation(productRequest.getInformation());
-            productEntity.setCreatedAt(LocalDateTime.now().toString());
-            productEntity.setUpdatedAt(LocalDateTime.now().toString());
             productRepository.save(productEntity);
 //            Thêm dữ liệu vào bảng product detail
             ProductDetailEntity productDetailEntity = new ProductDetailEntity();
@@ -160,7 +158,6 @@ public class ProductService implements ProductServiceImp {
         productEntity.setPrice(productDto.getPrice());
         productEntity.setDescription(productDto.getDescription());
         productEntity.setImages(productDto.getImages());
-        productEntity.setUpdatedAt(LocalDateTime.now().toString());
         productRepository.save(productEntity);
         return productEntity;
     }
