@@ -1,7 +1,0 @@
-package com.CyberSoft.uniclubWeb.exception;
-
-public class OrderDetailNotFoundException extends RuntimeException {
-    public OrderDetailNotFoundException(String message) {
-        super(message);
-    }
-} 
